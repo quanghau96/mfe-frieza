@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route, Router, Link } from 'react-router-dom';
+import Home from './components/Home'
+import OrderExports from './components/OrderExports'
 
-function App() {
+function App({ history }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      
+      <Router history={history}>
+      <nav>
+          <ul>
+            <li>
+              <Link to="/frieza">Home</Link>
+            </li>
+            <li>
+              <Link to="/frieza/order-exports">Order Exports</Link>
+            </li>
+          </ul>
+        </nav>
+          <hr />
+        <Switch>
+          <Route path="/frieza/order-exports" component={OrderExports} />
+          <Route path="/frieza" component={Home} />
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+  </div>
   );
 }
 
